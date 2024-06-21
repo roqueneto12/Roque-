@@ -1,4 +1,4 @@
-EstoqueVendas
+EstoqueVendas 
 Este desafio tem como objetivo criar um sistema de vendas e estoque utilizando a linguagem C. A turma será dividida em quatro squads, cada um responsável por uma parte específica do sistema. O projeto será gerenciado através de repositórios no GitHub e do Trello para o acompanhamento das tarefas. Todo o desenvolvimento deverá ser realizado utilizando a linguagem C, sem a utilização de bancos de dados, e as interfaces deverão ser implementadas no terminal.
 
 Squad 1: Interface do Usuário (UI) ○ Desenvolver interfaces de usuário no terminal utilizando a biblioteca ncurses. ○ Criar telas para login, cadastro de usuários e visualização de produtos. ○ Testar e ajustar as interfaces para garantir uma boa usabilidade.
