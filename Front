@@ -1,0 +1,186 @@
+#include <stdio.h>
+#include <locale.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define TAM 2
+#define MAX 50
+#define MAX_ITENS 10
+
+// Estrutura para representar um item do carrinho
+typedef struct {
+    char nome[50];
+    float preco;
+    int quantidade;
+} ItemCarrinho;
+
+// Variáveis globais para o carrinho
+ItemCarrinho carrinho[MAX_ITENS];
+int totalItens = 0; // Total de itens no carrinho
+
+// Variáveis globais para os produtos
+int qnt_prod[TAM], sku_prod[TAM];
+float valor_prod[TAM];
+char nome_prod[TAM][MAX];
+int tam_produto_cadastrado = 0;
+
+// Protótipos das funções
+void menuAdmin();
+void menuUsuario();
+void cadastroUsuario();
+void cadastroProdutos();
+void visualizarProdutos();
+void visualizarVendas();
+void exibirCarrinho();
+void voltarMenuAnterior();
+void adicionarAoCarrinho(char *nome, float preco, int quantidade);
+
+int main() {
+    setlocale(LC_ALL, "Portuguese");
+    int opcao;
+
+    printf("--------------------------------------------------\n");
+    printf("                     Nome da loja                 \n");
+    printf("--------------------------------------------------\n");
+    printf("1. Acessar como administrador\n");
+    printf("2. Acessar como usuário\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+
+    switch(opcao) {
+        case 1:
+            menuAdmin();
+            break;
+        case 2:
+            menuUsuario();
+            break;
+        default:
+            printf("Opção inválida!\n");
+    }
+
+    return 0;
+}
+
+void menuAdmin() {
+    int opcao;
+    printf("--------------------------------------------------\n");
+    printf("                     Menu admin                   \n");
+    printf("--------------------------------------------------\n");
+    printf("1. Cadastro de usuário\n");
+    printf("2. Cadastro de produtos (editar produtos)\n");
+    printf("3. Visualizar produtos\n");
+    printf("4. Visualizar vendas\n");
+    printf("5. Voltar\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+
+    switch(opcao) {
+        case 1:
+            cadastroUsuario();
+            voltarMenuAnterior();
+            break;
+        case 2:
+            cadastroProdutos();
+            voltarMenuAnterior();
+            break;
+        case 3:
+            visualizarProdutos();
+            voltarMenuAnterior();
+            break;
+        case 4:
+            visualizarVendas();
+            voltarMenuAnterior();
+            break;
+        case 5:
+            main();
+            break;
+        default:
+            printf("Opção inválida!\n");
+    }
+}
+
+void menuUsuario() {
+    int opcao;
+    printf("--------------------------------------------------\n");
+    printf("                     Menu usuário                 \n");
+    printf("--------------------------------------------------\n");
+    printf("1. Apresentar todos os produtos cadastrados\n");
+    printf("2. Exibir carrinho\n");
+    printf("3. Voltar\n");
+    printf("Escolha uma opção: ");
+    scanf("%d", &opcao);
+
+    switch(opcao) {
+        case 1:
+            visualizarProdutos();
+            voltarMenuAnterior();
+            break;
+        case 2:
+            exibirCarrinho();
+            voltarMenuAnterior();
+            break;
+        case 3:
+            main();
+            break;
+        default:
+            printf("Opção inválida!\n");
+    }
+}
+
+void voltarMenuAnterior() {
+    printf("Pressione qualquer tecla para voltar.\n");
+    getchar(); // Captura o enter do último scanf
+    getchar(); // Aguarda o usuário pressionar uma tecla
+    main(); // Retorna ao menu principal
+}
+
+void cadastroUsuario() {
+    // Código para cadastro de usuário
+    // ...
+}
+
+void cadastroProdutos() {
+    // Código para cadastro e edição de produtos
+    // ...
+}
+
+void visualizarProdutos() {
+    // Código para visualizar produtos
+    // ...
+}
+
+void visualizarVendas() {
+    // Código para visualizar vendas
+    // ...
+}
+
+void adicionarAoCarrinho(char *nome, float preco, int quantidade) {
+    if (totalItens < MAX_ITENS) {
+        strcpy(carrinho[totalItens].nome, nome);
+        carrinho[totalItens].preco = preco;
+        carrinho[totalItens].quantidade = quantidade;
+        totalItens++;
+    } else {
+        printf("Carrinho cheio!\n");
+    }
+}
+
+void exibirCarrinho() {
+    float total = 0;
+    printf("--------------------------------------------------\n");
+    printf("                     Seu Carrinho                 \n");
+    printf("--------------------------------------------------\n");
+    printf("Produto\t\tPreço\tQuantidade\tSubtotal\n");
+
+    for (int i = 0; i < totalItens; i++) {
+        float subtotal = carrinho[i].preco * carrinho[i].quantidade;
+        printf("%s\t\t%.2f\t%d\t\t%.2f\n", carrinho[i].nome, carrinho[i].preco, carrinho[i].quantidade, subtotal);
+        total += subtotal;
+    }
+
+    printf("--------------------------------------------------\n");
+    printf("Total: %.2f\n", total);
+}
+
+// Implementação das funções de gerenciamento de produtos
+// ...
